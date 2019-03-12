@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="AppBaseTheme">
-        <item name="android:statusBarColor">@color/material_blue_700</item>
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light">
+        <item name="android:statusBarColor">@color/btn_logut_bg</item>
     </style>
 </resources>

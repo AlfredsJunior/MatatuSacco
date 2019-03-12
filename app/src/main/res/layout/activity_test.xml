@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestActivity"
+    android:background="@color/white">
+    <EditText
+        android:id="@+id/one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <EditText
+        android:id="@+id/two"
+        android:layout_below="@+id/one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test 1"/>
+    <EditText
+        android:id="@+id/three"
+        android:layout_below="@id/two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test 2"/>
+    <EditText
+        android:id="@+id/four"
+        android:layout_below="@id/three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test 3"/>
+
+</RelativeLayout>

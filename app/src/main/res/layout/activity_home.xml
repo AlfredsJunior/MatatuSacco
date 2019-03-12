@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_login"
+    android:layout_gravity="center"
+    android:weightSum="2"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="1" android:background="#fff">
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="@string/rukagina_sacco"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:paddingTop="5dp"
+                android:id="@+id/textViewWelcome"
+                android:layout_width="wrap_content"
+                android:textColor="@color/btn_logut_bg"
+                android:textSize="25sp">
+
+            </TextView>
+            <Button
+                android:id="@+id/sendMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="top|right"
+                android:paddingTop="10dp"
+                android:padding="5dp"
+                android:text="@string/message_us"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@color/btn_logut_bg"
+
+               />
+
+            <ListView
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/listView1"
+                android:cacheColorHint="#00000000"
+                android:layout_width="match_parent"
+                android:background="#FFF">
+
+            </ListView>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/btn_logut_bg"
+        android:gravity="center">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            tools:ignore="UselessParent">
+
+            <HorizontalScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:focusable="true">
+
+                <TableLayout
+
+                    android:id="@+id/table"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true" />
+
+            </HorizontalScrollView>
+
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>

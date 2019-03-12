@@ -1,87 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center"
-    android:orientation="vertical"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/btn_logut_bg"
-    tools:context=".MainActivity">
-   
-   <LinearLayout
-       android:layout_width="fill_parent"
+    android:layout_gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+   <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_gravity="center"
-       android:orientation="vertical"
-       android:paddingLeft="20dp"
-       android:paddingRight="20dp">
-      <EditText
-          android:id="@+id/editTextIdNo"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="10dp"
-          android:background="@color/white"
-          android:hint="Enter Your Id No"
-          android:inputType="textEmailAddress"
-          android:padding="10dp"
-          android:singleLine="true"
-          android:textColor="@color/input_login"
-          android:textSize="16dp"
-          android:textColorHint="@color/input_login_hint"  />
-      <EditText
-          android:id="@+id/editTextPin"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="10dp"
-          android:background="@color/white"
-          android:hint="Enter Your Pin"
-          android:inputType="numberPassword"
-          android:padding="10dp"
-          android:singleLine="true"
-          android:textColor="@color/input_login"
-          android:textSize="16dp"
-          android:textColorHint="@color/input_login_hint" />
-      <EditText
-          android:id="@+id/editTextConfirmPin"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="10dp"
-          android:background="@color/white"
-          android:hint="Confirm Your Pin"
-          android:inputType="textPassword"
-          android:padding="10dp"
-          android:singleLine="true"
-          android:textColor="@color/input_login"
-          android:textSize="16dp"
-          android:textColorHint="@color/input_login_hint" />
+       android:gravity="center">
 
-      <!-- SIGN UP Button -->
-
-      <Button
-          android:id="@+id/btnLogin"
-          android:layout_width="300dp"
-          android:layout_height="35dp"
-          android:layout_marginTop="20dip"
-          android:background="@color/btn_login_bg"
-          android:text="Enter Your Id No"
-          android:textSize="20dp"
-          android:layout_marginLeft="20dp"
-          android:layout_marginRight="20dp"
-          android:textStyle="bold"
-          android:textColor="@color/btn_logut_bg" />
-
-      <ProgressBar
-          android:visibility="gone"
-          android:id="@+id/progressBar"
+      <TextView
+          android:id="@+id/textViewWelcome"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:text="@string/welcome_to_rukagina_sacco"
+          android:textStyle="bold"
+          android:textColor="@color/white"
+          android:textSize="25dp"
+          android:layout_gravity="center_horizontal"
+          android:layout_alignParentTop="true"
           android:layout_centerHorizontal="true"
-          android:layout_centerVertical="true" />
+          android:layout_marginTop="100dp" />
 
-      
-   </LinearLayout>
+      <EditText
+          android:id="@+id/editTextIdno"
+          android:layout_width="match_parent"
+          android:layout_height="40dp"
+          android:layout_marginTop="60dp"
+          android:layout_marginRight="20dp"
+          android:layout_marginLeft="20dp"
+          android:paddingLeft="100dp"
+          android:paddingTop="10dp"
+          android:hint="Enter Your Id No"
+          android:textSize="20dp"
+          android:textStyle="bold"
+          android:inputType="number"
+          android:background="@color/white"
+          android:layout_below="@+id/textViewWelcome"
+          android:autofillHints="" />
+
+      <EditText
+          android:id="@+id/editTextPin"
+          android:layout_width="match_parent"
+          android:layout_height="40dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginRight="20dp"
+          android:layout_marginLeft="20dp"
+          android:paddingLeft="100dp"
+          android:paddingTop="10dp"
+          android:hint="Enter Your Pin"
+          android:textStyle="bold"
+          android:background="@color/white"
+          android:layout_below="@+id/editTextIdno"
+          android:textSize="20dp"
+          android:inputType="numberPassword"
+          android:importantForAutofill="no" />
+
+      <EditText
+          android:id="@+id/editTextConfirmPin"
+          android:layout_width="match_parent"
+          android:layout_height="40dp"
+          android:layout_marginRight="20dp"
+          android:layout_marginLeft="20dp"
+          android:layout_marginTop="5dp"
+          android:paddingLeft="100dp"
+          android:paddingTop="10dp"
+          android:hint="Confirm Your Pin"
+          android:textStyle="bold"
+          android:background="@color/white"
+          android:inputType="numberPassword"
+          android:textSize="20dp"
+          android:layout_below="@+id/editTextPin"
+           />
+
+      <Button
+          android:id="@+id/buttonSignUp"
+          android:layout_width="200dp"
+          android:layout_height="35dp"
+          android:layout_marginRight="20dp"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="20dp"
+          android:paddingLeft="5dp"
+          android:paddingTop="5dp"
+          android:text="Sign Up"
+          android:textStyle="bold"
+          android:textSize="20dp"
+          android:textColor="@color/btn_logut_bg"
+          android:background="@color/white"
+          android:layout_below="@+id/editTextConfirmPin"/>
 
 
 
-</LinearLayout>
+   </RelativeLayout>
+
+</ScrollView>

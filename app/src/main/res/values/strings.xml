@@ -16,5 +16,38 @@
     <string name="shares">Shares</string>
     <string name="savings">Savings</string>
     <string name="todo">TODO</string>
+    <string name="unsuccessful">Unsuccessful</string>
+    <string name="welcome">Welcome to Rukagina Sacco</string>
+    <string name="message_us">Message Us</string>
+
+
+    <string name="canc"><![CDATA[<]]></string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="zero">0</string>
+    <string name="canc_all">X</string>
+    <string name="ok">OK</string>
+
+
+    <string name="delete_all">Delete All</string>
+    <string name="delete_last">Delete last number</string>
+    <string name="logged">Successful</string>
+    <string name="you_forgot_password">You forgot your password!</string>
+    <string name="insert_new_PIN">Insert new PIN</string>
+    <string name="reenter_PIN">Repeat new PIN</string>
+    <string name="new_PIN_saved">New PIN saved</string>
+    <string name="error_PIN">PIN not correct. Insert new PIN</string>
+    <string name="error_less_four">Insert 4 numbers</string>
+    <string name="no_more_attempts">Contact the Administrator to Reset your Pin</string>
+    <string name="rukagina_sacco">Rukagina Sacco</string>
+    <string name="welcome_to_rukagina_sacco">Welcome to Rukagina Sacco</string>
+
 
 </resources>

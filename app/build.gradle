@@ -1,6 +1,29 @@
 apply plugin: 'com.android.application'
 
 android {
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libassmidi.so'
+        pickFirst 'lib/x86/libassmidi.so'
+        // prevent duplicate files
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/spring.handlers'
+        exclude 'META-INF/spring.tooling'
+        exclude 'META-INF/spring.*'
+
+    }
+
+    useLibrary 'org.apache.http.legacy'
     compileSdkVersion 28
     defaultConfig {
         applicationId "ke.co.digisoftsolutions.matatusacco"
@@ -24,13 +47,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.mcxiaoke.volley:library-aar:1.0.1'
-    implementation 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
-    implementation 'com.mcxiaoke.volley:library-aar:1.0.1'
-
     implementation('com.github.orangegangsters:lollipin:2.0.0@aar') {
         transitive = true
     }
-    implementation 'com.android.support:support-annotations:27.1.1'
+    implementation 'com.android.support:support-annotations:28.0.0'
     implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
+    implementation 'org.webjars.bowergithub.predixdesignsystem:px-percent-circle:1.1.0'
+    implementation 'io.github.xiaoyudeguang:easy-asyn:3.1.3-RELEASE'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v13:28.0.0'
 }
-
