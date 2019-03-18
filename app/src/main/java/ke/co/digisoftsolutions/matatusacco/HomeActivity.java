@@ -5,7 +5,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +40,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 
@@ -52,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
     //int listItemCount=0;
     ListView listview ;
     Button button;
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,18 +68,14 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         //set onclicklistener
-        button=(Button)findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent i = new Intent(getApplicationContext(),SendMessagesActivity.class);
-                startActivity(i);
-            }
+        button = findViewById(R.id.sendMessage);
+        button.setOnClickListener(v -> {
+            // TODO Auto-generated method stub
+            Intent i = new Intent(getApplicationContext(),SendMessagesActivity.class);
+            startActivity(i);
         });
 
-        listview = (ListView) findViewById(R.id.listView1);
+        listview = findViewById(R.id.listView1);
         new LoadData().execute();
         //Fetch last 5 transactions
         try {
@@ -94,7 +94,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         //convert response to string
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is , "iso-8859-1") , 8);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is , StandardCharsets.ISO_8859_1) , 8);
             StringBuilder sb = new StringBuilder();
             String line = null;
             while ((line = reader.readLine()) != null) {
@@ -114,12 +114,9 @@ public class HomeActivity extends AppCompatActivity {
         try {
 
             JSONArray jArray = new JSONArray(result);
-
-
             String re = jArray.getString(jArray.length() - 1);
 
-
-            TableLayout tv = (TableLayout) findViewById(R.id.table);
+            TableLayout tv = findViewById(R.id.table);
             tv.removeAllViewsInLayout();
             int flag = 1;
 
@@ -154,27 +151,21 @@ public class HomeActivity extends AppCompatActivity {
                     b29.setTextSize(15);
                     tr.addView(b29);
 
-
                     tv.addView(tr);
 
                     final View vline = new View(HomeActivity.this);
                     vline.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT , 2));
                     vline.setBackgroundColor(Color.BLUE);
 
-
                     tv.addView(vline);
                     flag = 0;
 
-
                 } else {
 
-
                     JSONObject json_data = jArray.getJSONObject(i);
-
                     Log.i("log_tag" , "id: " + json_data.getInt("f1") +
                             ", Username: " + json_data.getString("f2") +
                             ", No: " + json_data.getInt("f3"));
-
 
                     TextView b = new TextView(HomeActivity.this);
                     String stime = String.valueOf(json_data.getInt("f1"));
@@ -182,7 +173,6 @@ public class HomeActivity extends AppCompatActivity {
                     b.setTextColor(Color.RED);
                     b.setTextSize(15);
                     tr.addView(b);
-
 
                     TextView b1 = new TextView(HomeActivity.this);
                     b1.setPadding(10 , 0 , 0 , 0);
@@ -202,24 +192,17 @@ public class HomeActivity extends AppCompatActivity {
 
                     tv.addView(tr);
 
-
                     final View vline1 = new View(HomeActivity.this);
                     vline1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT , 1));
                     vline1.setBackgroundColor(Color.WHITE);
                     tv.addView(vline1);
-
-
                 }
-
             }
-
-
         } catch (JSONException e) {
             Log.e("log_tag" , "Error parsing data " + e.toString());
             Toast.makeText(getApplicationContext() , "JsonArray fail" , Toast.LENGTH_SHORT).show();
         }
     }
-
     //fetch the details, shares, savings &loan
     private class LoadData extends AsyncTask<Void, Void, Void> {
         private ProgressDialog progressDialog;
@@ -228,17 +211,18 @@ public class HomeActivity extends AppCompatActivity {
         protected void onPreExecute() {
             this.progressDialog = ProgressDialog.show(HomeActivity.this, ""," Loading...");
         }
-
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         protected Void doInBackground(Void... params) {
-            // TODO Auto-generated method stub
-            // HTTP post
+            /*
+            TODO Auto-generated method stub
+            HTTP post
+            */
             try {
-                ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+                ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
                 HttpClient httpclient = new DefaultHttpClient();
                 try{
                     HttpPost httppost = new HttpPost("http://192.168.0.16/MatatuSacco/selectdetails.php");
-
                     StringEntity se = new StringEntity("envelope", HTTP.UTF_8);
                     httppost.setEntity(se);
                     HttpParams httpParameters = new BasicHttpParams();
@@ -261,7 +245,7 @@ public class HomeActivity extends AppCompatActivity {
                 //buffered reader
                 try{
                     BufferedReader reader = new BufferedReader(new InputStreamReader(
-                            is, "iso-8859-1"), 80);
+                            is, StandardCharsets.ISO_8859_1), 80);
                     sb = new StringBuilder();
                     sb.append(reader.readLine() + "\n");
                     String line = "0";
@@ -285,9 +269,5 @@ public class HomeActivity extends AppCompatActivity {
             }
             return null;
         }
-    }}
-
-
-
-
-
+    }
+}

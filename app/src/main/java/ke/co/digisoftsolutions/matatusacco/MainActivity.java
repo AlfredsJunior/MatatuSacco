@@ -10,7 +10,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     final JSONParser jsonParser = new JSONParser();
     //editext && button
     private EditText editTextIdno, editTextPin, editTextConfirmPin;
-    private Button buttonSignUp;
     private String idno, pin, confirmPin;
 
     //URL to create a new User
@@ -45,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     //JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private SQLiteHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         editTextIdno = findViewById(R.id.editTextIdno);
         editTextPin = findViewById(R.id.editTextPin);
         editTextConfirmPin = findViewById(R.id.editTextConfirmPin);
-        buttonSignUp = findViewById(R.id.buttonSignUp);
+        Button buttonSignUp = findViewById(R.id.buttonSignUp);
 
         //sign up-Button
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         "You need to type in Your Id No/ Pin/ Confirm Pin" , Toast.LENGTH_LONG).show();
                 Intent i = new Intent(getApplicationContext() , MainActivity.class);
                 startActivity(i);
+                finish();
                 }
 
             else {
@@ -86,25 +84,28 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Background Async Task to registering new user
          * */
+        @SuppressLint("StaticFieldLeak")
         public class CreateNewUser extends AsyncTask<String, String, String> {
 
             //Before starting background thread Show Progress Dialog
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                //commented by me  pDialog = new ProgressDialog(HomeActivity.this);
                 pDialog = new ProgressDialog(MainActivity.this);
                 pDialog.setMessage("Creating new User...");
                 pDialog.setIndeterminate(false);
                 pDialog.setCancelable(true);
                 pDialog.show();
+                Intent i = new Intent(getApplicationContext() , TestActivity.class);
+                startActivity(i);
+                //closing this screen
+                finish();
             }
 
             //Creating new User
+            @SuppressLint({"WrongThread" , "HardwareIds"})
             @Override
             protected String doInBackground(String... args) {
-
-
                 //Get serialnumber
                 String serialnumber = null;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -114,12 +115,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //Get Macaddress
                 WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                assert wifiManager != null;
                 WifiInfo wInfo = wifiManager.getConnectionInfo();
                 String macaddress = wInfo.getMacAddress();
                 //Get Id No
-                @SuppressLint("WrongThread") String idno = editTextIdno.getText().toString();
+                 idno = editTextIdno.getText().toString();
                 //Get Pin
-                @SuppressLint("WrongThread") String pin = editTextPin.getText().toString();
+                 pin = editTextPin.getText().toString();
                 //Building Parameters
                 List<NameValuePair> params = new ArrayList<>();
                 params.add(new BasicNameValuePair("serialnumber" , serialnumber));
@@ -140,17 +142,18 @@ public class MainActivity extends AppCompatActivity {
                     int success = json.getInt(TAG_SUCCESS);
                     if (success == 1) {
                         //successful created User
-                        Intent i = new Intent(getApplicationContext() , HomeActivity.class);
+                        Intent i = new Intent(getApplicationContext() , TestActivity.class);
                         startActivity(i);
                         //closing this screen
                         finish();
                     } else {
                         //String Definition
-                        String error444 = "Failed to create User. Maybe the User exists already, please try another one!";
+                        //String error444 = "Failed to create User. Maybe the User exists already, please try another one!";
+                        Toast.makeText(MainActivity.this ,
+                                "Failed to create User. Maybe Your Id exists already, please Contact the administrator!" ,
+                                Toast.LENGTH_LONG).show();
                         //New Intent
                         Intent i = new Intent(getApplicationContext() , MainActivity.class);
-                        //String to Intent
-                        i.putExtra("error" , error444);
                         //Start ErrorActivity
                         startActivity(i);
                         finish();
